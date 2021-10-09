@@ -12,8 +12,10 @@ class Line:
 		self.slope = with_slope
 		self.intercept = with_intercept
 	
-	func intersects_line(line: Line):
-		return (self.intercept - line.intercept) / (self.slope - line.slope)
+	func intersects_line(line: Line) -> Vector2:
+		var x := (self.intercept - line.intercept) / (line.slope - self.slope)
+		var y := self.slope * x + self.intercept
+		return Vector2(x, y)
 	
 	func length_of_ray_until_intersect(theta: float) -> float:
 		return self.intercept / (sin(theta) - self.slope * cos(theta))
